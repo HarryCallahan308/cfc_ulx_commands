@@ -116,6 +116,8 @@ local function getGagReasonFromDatabase( ply )
     return reason
 end
 
+local removeGag()
+
 local function removeExpiredGagFromDatabase( ply )
     if not isValidPlayer( ply ) then return end
 
@@ -317,7 +319,7 @@ local function updateGags()
 
     for ply, expiration in pairs( GaggedPlayers ) do
         if isValidPlayer( ply ) then
-            if gagIsExpired( expiration ) or not playerIsUlxGagged( ply ) then
+            if gagIsExpired( expiration ) then
                 removeExpiredGagFromDatabase( ply )
                 ungagPlayer( ply )
             end
