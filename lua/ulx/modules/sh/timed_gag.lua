@@ -116,8 +116,6 @@ local function getGagReasonFromDatabase( ply )
     return reason
 end
 
-local removeGag()
-
 local function removeExpiredGagFromDatabase( ply )
     if not isValidPlayer( ply ) then return end
 
