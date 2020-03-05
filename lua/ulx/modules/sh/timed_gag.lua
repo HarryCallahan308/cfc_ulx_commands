@@ -116,20 +116,12 @@ local function getGagReasonFromDatabase( ply )
     return reason
 end
 
-local function removeExpiredGagFromDatabase( ply )
-    if not isValidPlayer( ply ) then return end
-
-    local query = string.format( GAG_QUERIES.delete_gag, GAGS_SQL_TABLE, ply:SteamID() )
-
-    return SQLAction( "Deleting expired time gag", query, ply )
-end
-
 local function removeGagFromDatabase( ply )
     if not isValidPlayer( ply ) then return end
 
     local query = string.format( GAG_QUERIES.delete_gag, GAGS_SQL_TABLE, ply:SteamID() )
 
-    return SQLAction( "Manually deleting time gag", query, ply )
+    return SQLAction( "Deleting expired time gag", query, ply )
 end
 
 -- END DATABASE OPERATIONS --
@@ -318,7 +310,7 @@ local function updateGags()
     for ply, expiration in pairs( GaggedPlayers ) do
         if isValidPlayer( ply ) then
             if gagIsExpired( expiration ) then
-                removeExpiredGagFromDatabase( ply )
+                removeGagFromDatabase( ply )
                 ungagPlayer( ply )
             end
         else
