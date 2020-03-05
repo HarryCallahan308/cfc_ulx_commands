@@ -255,6 +255,7 @@ local function timeGag( callingPlayer, targetPlayers, minutesToGag, reason, shou
     if shouldUngag then
         for _, ply in pairs( targetPlayers ) do
             removeGagFromDatabase( ply )
+            ungagPlayer( ply )
         end
 
         return ulx.fancyLogAdmin( callingPlayer, "#A ungagged #T!", targetPlayers )
