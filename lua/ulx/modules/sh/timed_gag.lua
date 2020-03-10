@@ -220,7 +220,7 @@ local function getPlayerGagFromDatabase( ply )
     end
 
     if gagIsExpired( expiration ) then
-        removeExpiredGagFromDatabase( ply )
+        removeGagFromDatabase( ply )
         ungagPlayer( ply )
 
         return
